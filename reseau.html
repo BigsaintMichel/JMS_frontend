@@ -98,8 +98,12 @@
 
                 <!-- ZONE DROITE : Burger uniquement (drapeaux réservés à l'accueil) -->
                 <div class="flex items-center justify-end space-x-4 flex-shrink-0">
-                    <button id="burgerBtn" aria-label="Ouvrir le menu" class="w-10 h-10 flex items-center justify-center text-blue-900">
-                        <i class="fas fa-bars text-2xl"></i>
+                    <button id="burgerBtn" aria-label="Ouvrir le menu" class="group relative overflow-hidden rounded-full border-2 border-jms-blue px-6 py-2 text-jms-blue transition-colors duration-300 hover:text-white">
+                        <span class="absolute inset-0 translate-y-full bg-jms-red transition-transform duration-500 ease-out group-hover:translate-y-0"></span>
+                        <span class="relative z-10 flex items-center gap-2">
+                            <i class="fas fa-bars text-xl"></i>
+                            <span class="font-semibold text-lg">Menu</span>
+                        </span>
                     </button>
                 </div>
             </div>

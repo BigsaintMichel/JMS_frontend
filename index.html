@@ -56,11 +56,30 @@
             to { opacity: 1; }
         }
 
-        /* Fond flouté JMS */
+        /* Fond flouté JMS avec carrousel */
         .hero-bg {
-            background-image: url("bg.png"); /* mets ton fond JMS ici */
+            position: relative;
             background-size: cover;
             background-position: center;
+        }
+
+        .hero-bg-carousel {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .hero-bg-slide {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        .hero-bg-slide.active {
+            opacity: 1;
         }
 
         /* Style pour les icônes du footer (transition douce) */
@@ -117,6 +136,13 @@
     <body class="bg-white text-gray-900 font-serif overflow-hidden">
     <!-- Landing plein écran -->
     <div id="landingRoot" class="relative hero-bg min-h-screen flex flex-col justify-between">
+        <!-- Carrousel de fond -->
+        <div class="hero-bg-carousel">
+            <div class="hero-bg-slide active" style="background-image: url('assets/images/bamako.jpg');"></div>
+            <div class="hero-bg-slide" style="background-image: url('assets/images/senegal.jpg');"></div>
+            <div class="hero-bg-slide" style="background-image: url('assets/images/plateu.jpg');"></div>
+        </div>
+        
         <div class="absolute inset-0 bg-white/60"></div>
 
         <!-- HEADER spécifique -->
@@ -260,6 +286,19 @@
 
             // Petite pause avant de démarrer l'écriture
             setTimeout(step, 500);
+
+            // Carrousel de fond automatique
+            const bgSlides = document.querySelectorAll('.hero-bg-slide');
+            let currentBgSlide = 0;
+
+            function nextBgSlide() {
+                bgSlides[currentBgSlide].classList.remove('active');
+                currentBgSlide = (currentBgSlide + 1) % bgSlides.length;
+                bgSlides[currentBgSlide].classList.add('active');
+            }
+
+            // Démarrer le carrousel de fond (change toutes les 5 secondes)
+            setInterval(nextBgSlide, 5000);
         });
     </script>
 
