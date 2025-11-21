@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nos Programmes – JMS Afrique</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'jms-blue': '#0D2A4F',
+                        'jms-red': '#E53E3E',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        @keyframes pillFadeInLeft {
+            0% { opacity: 0; transform: translateX(-24px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+        .pill-appear {
+            animation: pillFadeInLeft 0.45s ease-out forwards;
+            padding: 0.4rem 1.4rem !important; /* capsules plus compactes */
+        }
+
+        .marquee-wrapper { position: relative; overflow: hidden; }
+        .marquee { display: inline-block; white-space: nowrap; will-change: transform; animation: marquee 12s linear infinite; }
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .page-blurred main {
+            filter: blur(6px);
+        }
+
+        /* Correction débordement header sur mobile */
+        @media (max-width: 640px) {
+            body {
+                overflow-x: hidden;
+            }
+
+            header .container > div {
+                max-width: 100%;
+                overflow: hidden;
+            }
+
+            header img.h-24 {
+                height: 3.5rem;
+            }
+
+            header img.h-16 {
+                height: 2.25rem;
+                max-width: 18vw;
+                width: auto;
+            }
+
+            .marquee {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900 font-serif">
+
+    <!-- BANDEAU FLASH INFOS GLOBAL -->
+    <div class="w-full bg-white border-b border-gray-200">
+        <div class="container mx-auto px-4 py-2 flex items-center gap-3">
+            <span class="bg-jms-red text-white text-xs md:text-sm font-semibold px-3 py-1 rounded">
+                Flash Infos
+            </span>
+            <div class="marquee-wrapper flex-1">
+                <span class="marquee font-semibold text-red-600 text-xs md:text-sm uppercase">
+                    AGENDA : PROCHAINE ACTIVITÉ JMS PRÉVUE POUR LE 13 NOVEMBRE
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur shadow">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between w-full space-x-4">
+                <div class="flex items-center space-x-4 flex-shrink-0">
+                    <a href="index.html" class="flex items-center">
+                        <img src="assets/images/logo.png" class="h-24 md:h-32" alt="Logo JMS">
+                    </a>
+                </div>
+
+                <div class="flex items-center justify-end space-x-4 flex-shrink-0">
+                    <button id="burgerBtn" aria-label="Ouvrir le menu" class="w-10 h-10 flex items-center justify-center text-blue-900">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- MENU OVERLAY PLEIN ÉCRAN - PILULES LIQUIDES ALIGNÉES GAUCHE -->
+        <div id="mobile-menu" class="fixed inset-0 z-50 backdrop-blur-xl flex flex-col hidden opacity-0 transition-all duration-300 ease-in-out">
+            <div class="w-full flex justify-end px-8 pt-6">
+                <button id="closeMenu" aria-label="Fermer le menu" class="text-jms-blue hover:text-jms-red text-4xl">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="flex-1 flex items-center">
+                <div class="flex flex-col items-start space-y-6 pl-10 md:pl-24">
+                    <a href="initiative.html"
+                       class="group relative block w-fit overflow-hidden rounded-full border-2 border-jms-blue px-8 py-3 text-xl md:text-2xl font-bold text-jms-blue transition-colors duration-300 pill-appear"
+                       style="animation-delay: 0.05s;">
+                        <span class="absolute inset-0 translate-y-full bg-jms-red transition-transform duration-500 ease-out group-hover:translate-y-0"></span>
+                        <span class="relative z-10 transition-colors duration-300 group-hover:text-white">L'Initiative</span>
+                    </a>
+                    <a href="programmes.html"
+                       class="group relative block w-fit overflow-hidden rounded-full border-2 border-jms-blue px-8 py-3 text-xl md:text-2xl font-bold text-jms-blue transition-colors duration-300 pill-appear"
+                       style="animation-delay: 0.12s;">
+                        <span class="absolute inset-0 translate-y-full bg-jms-red transition-transform duration-500 ease-out group-hover:translate-y-0"></span>
+                        <span class="relative z-10 transition-colors duration-300 group-hover:text-white">Les Programmes</span>
+                    </a>
+                    <a href="rejoindre.html"
+                       class="group relative block w-fit overflow-hidden rounded-full border-2 border-jms-blue px-8 py-3 text-xl md:text-2xl font-bold text-jms-blue transition-colors duration-300 pill-appear"
+                       style="animation-delay: 0.19s;">
+                        <span class="absolute inset-0 translate-y-full bg-jms-red transition-transform duration-500 ease-out group-hover:translate-y-0"></span>
+                        <span class="relative z-10 transition-colors duration-300 group-hover:text-white">Rejoindre</span>
+                    </a>
+                    <a href="reseau.html"
+                       class="group relative block w-fit overflow-hidden rounded-full border-2 border-jms-blue px-8 py-3 text-xl md:text-2xl font-bold text-jms-blue transition-colors duration-300 pill-appear"
+                       style="animation-delay: 0.26s;">
+                        <span class="absolute inset-0 translate-y-full bg-jms-red transition-transform duration-500 ease-out group-hover:translate-y-0"></span>
+                        <span class="relative z-10 transition-colors duration-300 group-hover:text-white">Réseau</span>
+                    </a>
+                    <a href="bibliotheque.html"
+                       class="group relative block w-fit overflow-hidden rounded-full border-2 border-jms-blue px-8 py-3 text-xl md:text-2xl font-bold text-jms-blue transition-colors duration-300 pill-appear"
+                       style="animation-delay: 0.33s;">
+                        <span class="absolute inset-0 translate-y-full bg-jms-red transition-transform duration-500 ease-out group-hover:translate-y-0"></span>
+                        <span class="relative z-10 transition-colors duration-300 group-hover:text-white">Bibliothèque</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12 flex flex-col md:flex-row gap-10">
+
+        <aside class="w-full md:w-1/4">
+            <div class="sticky top-28 p-6 bg-gray-50 rounded-xl shadow-md">
+                <h3 class="group relative inline-block mb-4 overflow-hidden rounded-full border-2 border-jms-blue px-6 py-2 text-xl font-bold text-jms-blue pill-appear whitespace-nowrap" style="animation-delay: 0.08s;">
+                    <span class="absolute inset-0 translate-y-full bg-jms-red transition-transform duration-500 ease-out group-hover:translate-y-0"></span>
+                    <span class="relative z-10 transition-colors duration-300 group-hover:text-white">Les Programmes</span>
+                </h3>
+                <ul class="flex flex-wrap gap-2 text-gray-700">
+                    <li><a href="#information" class="block hover:text-red-600 transition">Information</a></li>
+                    <li><a href="#formation" class="block hover:text-red-600 transition">Formation</a></li>
+                    <li><a href="#education" class="block hover:text-red-600 transition">Éducation citoyenne</a></li>
+                    <li><a href="#promotion" class="block hover:text-red-600 transition">Promotion de la citoyenneté</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <section class="w-full md:w-3/4">
+            <h1 class="group relative inline-block mb-8 overflow-hidden rounded-full border-2 border-jms-blue px-8 py-3 text-3xl md:text-4xl font-bold text-jms-blue pill-appear" style="animation-delay: 0.05s;">
+                <span class="absolute inset-0 translate-y-full bg-jms-red transition-transform duration-500 ease-out group-hover:translate-y-0"></span>
+                <span class="relative z-10 transition-colors duration-300 group-hover:text-white">Nos Programmes</span>
+            </h1>
+            
+            <article id="information" class="mb-10 p-6 border-l-4 border-red-600 bg-gray-50/50">
+                <h2 class="group relative inline-block mb-3 overflow-hidden rounded-full border-2 border-jms-blue px-6 py-2 text-2xl font-bold text-jms-blue pill-appear" style="animation-delay: 0.12s;">
+                    <span class="absolute inset-0 translate-y-full bg-jms-red transition-transform duration-500 ease-out group-hover:translate-y-0"></span>
+                    <span class="relative z-10 transition-colors duration-300 group-hover:text-white">Information</span>
+                </h2>
+                <p class="text-gray-700">
+                    (Contenu à insérer ici) Présentation des actions destinées à informer les citoyens : décisions étatiques, politiques publiques, analyse du débat public, etc.[cite: 45, 46]. Inclure les liens directs vers les deux chaînes WhatsApp[cite: 47].
+                </p>
+            </article>
+
+            <article id="formation" class="mb-10 p-6 border-l-4 border-blue-600">
+                <h2 class="group relative inline-block mb-3 overflow-hidden rounded-full border-2 border-jms-blue px-6 py-2 text-2xl font-bold text-jms-blue pill-appear" style="animation-delay: 0.18s;">
+                    <span class="absolute inset-0 translate-y-full bg-jms-red transition-transform duration-500 ease-out group-hover:translate-y-0"></span>
+                    <span class="relative z-10 transition-colors duration-300 group-hover:text-white">Formation</span>
+                </h2>
+                <p class="text-gray-700">
+                    (Contenu à insérer ici) Programmes destinés à renforcer les compétences des jeunes (coopération, gestion d'ONG, participation, etc.) avec descriptifs et témoignages[cite: 49, 50, 51, 52, 54, 55].
+                </p>
+            </article>
+
+            </section>
+
+    </main>
+
+    <footer class="bg-blue-900 text-white py-10 mt-20" style="background-color: #0D2A4F;">
+        <div class="container mx-auto px-6 text-center">
+            <h3 class="text-3xl mb-6">Abonne-toi ou suis-nous pour ne PLUS rien manquer !</h3>
+            <div class="flex justify-center space-x-6 mb-8 text-3xl">
+                <a href="https://www.facebook.com/share/14LE77YSZtU/" target="_blank" rel="noopener noreferrer" class="social-icon" title="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.instagram.com/jms_afrique?igsh=bXFvZHBhMjQxeXVu" target="_blank" rel="noopener noreferrer" class="social-icon" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.tiktok.com/@jms_afrique?_r=1&_d=ek9klg32blka8l..." target="_blank" rel="noopener noreferrer" class="social-icon" title="TikTok">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+                <a href="https://www.linkedin.com/company/jeunes-m%C3%A9dias-soci%C3%A9t%C3%A9/" target="_blank" rel="noopener noreferrer" class="social-icon" title="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://x.com/Jms_afrique?t=AuNl0bI57cO3JRg48jRP8A&s=08" target="_blank" rel="noopener noreferrer" class="social-icon" title="X (Twitter)">
+                    <i class="fab fa-x-twitter"></i>
+                </a>
+                <a href="https://whatsapp.com/channel/0029VaPhuFmAzNbyWgZxfr3l" target="_blank" rel="noopener noreferrer" class="social-icon" title="WhatsApp 1">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://whatsapp.com/channel/0029VaQfyBB7T8bURoT2im1s" target="_blank" rel="noopener noreferrer" class="social-icon" title="WhatsApp 2">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+            <p class="text-blue-200 text-sm">&copy; 2025 JMS Afrique. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        const burgerBtn = document.getElementById('burgerBtn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenu = document.getElementById('closeMenu');
+        const pageBody = document.body;
+
+        function openMobileMenu() {
+            if (!mobileMenu) return;
+            mobileMenu.classList.remove('hidden');
+            requestAnimationFrame(() => {
+                mobileMenu.classList.remove('opacity-0');
+            });
+            if (pageBody) {
+                pageBody.classList.add('page-blurred');
+            }
+        }
+
+        function closeMobileMenu() {
+            if (!mobileMenu) return;
+            mobileMenu.classList.add('opacity-0');
+            setTimeout(() => {
+                mobileMenu.classList.add('hidden');
+            }, 300);
+            if (pageBody) {
+                pageBody.classList.remove('page-blurred');
+            }
+        }
+
+        if (burgerBtn && mobileMenu && closeMenu) {
+            burgerBtn.addEventListener('click', openMobileMenu);
+            closeMenu.addEventListener('click', closeMobileMenu);
+            mobileMenu.addEventListener('click', (e) => {
+                if (e.target === mobileMenu) {
+                    closeMobileMenu();
+                }
+            });
+        }
+    </script>
+</body>
+</html>

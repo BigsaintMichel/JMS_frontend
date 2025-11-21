@@ -1,0 +1,54 @@
+/* Police manuscrite (uniquement pour le H1) */
+.font-another {
+    font-family: 'Gochi Hand', cursive;
+}
+
+/* Conteneur pour l'animation de saisie */
+.typing-container {
+    display: inline-block;
+    position: relative;
+}
+
+/* Style du curseur (fin) */
+.typing-cursor {
+    display: inline-block;
+    width: 3px; /* Curseur fin */
+    background-color: #0D2A4F;
+    animation: blink-caret .75s step-end infinite;
+    opacity: 0; /* Caché par défaut */
+}
+
+@keyframes blink-caret {
+    from, to { opacity: 0 }
+    50% { opacity: 1; } /* Clignotement */
+}
+
+/* Classe pour activer le curseur via JS */
+.cursor-active {
+    opacity: 1;
+}
+
+/* Animation pour les éléments secondaires (fade-in simple) */
+.simple-fade-in {
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+}
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+/* Fond flouté JMS */
+.hero-bg {
+    background-image: url("../images/bg.png"); /* mets ton fond JMS ici */
+    background-size: cover;
+    background-position: center;
+}
+
+/* Style pour les icônes du footer (transition douce) */
+.social-icon {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.social-icon:hover {
+    opacity: 0.8;
+    transform: scale(1.15); /* Effet de zoom au survol */
+}

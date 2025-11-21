@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JMS Afrique – Jeunesse Citoyenne</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="assets/css/style.css"> <style>
+        /* Police manuscrite (uniquement pour le H1) */
+        .font-another {
+            font-family: 'Gochi Hand', cursive;
+        }
+
+        /* Police Inter pour les éléments en sans-serif dédiés (ex: bouton) */
+        .font-inter {
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        /* Conteneur pour l'animation de saisie */
+        .typing-container {
+            display: inline-block;
+            position: relative;
+        }
+        
+        /* Style du curseur (fin) */
+        .typing-cursor {
+            display: inline-block;
+            width: 3px; /* Curseur fin */
+            background-color: #0D2A4F;
+            animation: blink-caret .75s step-end infinite;
+            opacity: 0; /* Caché par défaut */
+        }
+
+        @keyframes blink-caret {
+            from, to { opacity: 0 }
+            50% { opacity: 1; } /* Clignotement */
+        }
+        
+        /* Classe pour activer le curseur via JS */
+        .cursor-active {
+            opacity: 1;
+        }
+
+        /* Animation pour les éléments secondaires (fade-in simple) */
+        .simple-fade-in {
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* Fond flouté JMS */
+        .hero-bg {
+            background-image: url("bg.png"); /* mets ton fond JMS ici */
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Style pour les icônes du footer (transition douce) */
+        .social-icon {
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .social-icon:hover {
+            opacity: 0.8;
+            transform: scale(1.15); /* Effet de zoom au survol */
+        }
+
+        /* Couleurs thématiques JMS */
+        .text-jms-red { color: #dc2626; }
+        .text-jms-blue { color: #0D2A4F; }
+
+        /* Marquee Agenda */
+        .marquee-wrapper { position: relative; overflow: hidden; }
+        .marquee { display: inline-block; white-space: nowrap; will-change: transform; animation: marquee 12s linear infinite; }
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Correction débordement header sur mobile */
+        @media (max-width: 640px) {
+            body {
+                overflow-x: hidden;
+            }
+
+            header .container > div,
+            header > div {
+                max-width: 100%;
+                overflow: hidden;
+            }
+
+            header img.h-32,
+            header img.h-24 {
+                height: 3.5rem;
+            }
+
+            header img.h-16 {
+                height: 2.25rem;
+                max-width: 18vw;
+                width: auto;
+            }
+
+            .marquee {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+
+    <body class="bg-white text-gray-900 font-serif overflow-hidden">
+    <!-- Landing plein écran -->
+    <div id="landingRoot" class="relative hero-bg min-h-screen flex flex-col justify-between">
+        <div class="absolute inset-0 bg-white/60"></div>
+
+        <!-- HEADER spécifique -->
+        <header class="relative z-10 w-full px-6 py-4">
+            <div class="flex items-center justify-between w-full space-x-4">
+                <!-- Logo à gauche -->
+                <a href="menu.html" class="flex items-center flex-shrink-0" onclick="if (history.length > 1) { history.back(); return false; }">
+                    <img src="assets/images/logo.png" class="h-32" alt="Logo JMS">
+                </a>
+
+                <!-- Agenda défilant au centre -->
+                <div class="flex-1 mx-2 md:mx-8 marquee-wrapper">
+                    <div class="block text-blue-900">
+                        <span class="marquee font-semibold text-red-600 text-2xl md:text-3xl uppercase">
+                            AGENDA : PROCHAINE ACTIVITÉ JMS PRÉVUE POUR LE 13 NOVEMBRE
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Drapeaux à droite -->
+                <div class="flex items-center justify-end space-x-4 flex-shrink-0">
+                    <img src="assets/images/drapeau.png" class="h-16" alt="Drapeaux">
+                </div>
+            </div>
+        </header>
+
+        <!-- CENTRE: message + bouton -->
+        <div class="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-6 py-8">
+            <div class="typing-container">
+                <h1 id="typewriterText" class="text-4xl md:text-7xl font-another text-jms-blue leading-tight inline-block whitespace-pre-line"></h1>
+                <span id="typingCursor" class="typing-cursor align-middle"></span>
+            </div>
+            <a id="heroButton" href="menu.html" class="mt-12 inline-block bg-red-600 text-white px-8 py-3 rounded-full shadow hover:bg-red-700 transition font-inter opacity-0 pointer-events-none">BIENVENUE</a>
+        </div>
+
+        <!-- BAS: icônes sociales -->
+        <div class="relative z-10 w-full">
+            <div class="container mx-auto px-6 text-center pb-6">
+                <div class="flex justify-center space-x-6 text-3xl">
+                    <a href="https://www.facebook.com/share/14LE77YSZtU/" target="_blank" rel="noopener noreferrer" class="social-icon no-redirect" title="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com/jms_afrique?igsh=bXFvZHBhMjQxeXVu" target="_blank" rel="noopener noreferrer" class="social-icon no-redirect" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@jms_afrique?_r=1&_d=ek9klg32blka8l..." target="_blank" rel="noopener noreferrer" class="social-icon no-redirect" title="TikTok">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/company/jeunes-m%C3%A9dias-soci%C3%A9t%C3%A9/" target="_blank" rel="noopener noreferrer" class="social-icon no-redirect" title="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://x.com/Jms_afrique?t=AuNl0bI57cO3JRg48jRP8A&s=08" target="_blank" rel="noopener noreferrer" class="social-icon no-redirect" title="X (Twitter)">
+                        <i class="fab fa-x-twitter"></i>
+                    </a>
+                    <a href="https://whatsapp.com/channel/0029VaPhuFmAzNbyWgZxfr3l" target="_blank" rel="noopener noreferrer" class="social-icon no-redirect" title="WhatsApp 1">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="https://whatsapp.com/channel/0029VaQfyBB7T8bURoT2im1s" target="_blank" rel="noopener noreferrer" class="social-icon no-redirect" title="WhatsApp 2">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pas de footer global sur la landing: icônes déjà intégrées en bas de l'écran d'accueil -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const textEl = document.getElementById('typewriterText');
+            const cursorEl = document.getElementById('typingCursor');
+            const buttonEl = document.getElementById('heroButton');
+            const landingRoot = document.getElementById('landingRoot');
+
+            if (!textEl || !cursorEl || !buttonEl || !landingRoot) return;
+
+            // Segments pour gérer les couleurs + retours à la ligne
+            const segments = [
+                { text: 'Jeunes,', className: 'text-jms-blue' },
+                { text: '\nmais ', className: 'text-jms-blue' },
+                { text: 'citoyens', className: 'text-jms-red' },
+                { text: '\n', className: 'text-jms-blue' },
+                { text: "d'abord !", className: 'text-jms-blue' }
+            ];
+
+            const typingSpeed = 90; // ms entre chaque lettre
+            let segmentIndex = 0;
+            let charIndex = 0;
+            const rendered = segments.map(() => '');
+
+            cursorEl.classList.add('cursor-active');
+
+            // Rendre toute la page principale cliquable vers la seconde page,
+            // tout en laissant les liens de réseaux sociaux fonctionner normalement.
+            landingRoot.addEventListener('click', function () {
+                window.location.href = 'menu.html';
+            });
+
+            const noRedirectLinks = document.querySelectorAll('.no-redirect');
+            noRedirectLinks.forEach(function (link) {
+                link.addEventListener('click', function (event) {
+                    event.stopPropagation();
+                });
+            });
+
+            function renderText() {
+                let html = '';
+                for (let i = 0; i < segments.length; i++) {
+                    const seg = segments[i];
+                    let content = rendered[i];
+                    if (!content) continue;
+
+                    // Gestion des retours à la ligne
+                    const safe = content.replace(/\n/g, '<br>');
+                    html += '<span class="' + seg.className + '">' + safe + '</span>';
+                }
+                textEl.innerHTML = html;
+            }
+
+            function step() {
+                const seg = segments[segmentIndex];
+                rendered[segmentIndex] += seg.text.charAt(charIndex);
+                charIndex++;
+                renderText();
+
+                if (charIndex >= seg.text.length) {
+                    segmentIndex++;
+                    charIndex = 0;
+
+                    // Fin de l'animation
+                    if (segmentIndex >= segments.length) {
+                        cursorEl.classList.remove('cursor-active');
+                        buttonEl.classList.remove('opacity-0', 'pointer-events-none');
+                        buttonEl.classList.add('simple-fade-in');
+                        return;
+                    }
+                }
+
+                setTimeout(step, typingSpeed);
+            }
+
+            // Petite pause avant de démarrer l'écriture
+            setTimeout(step, 500);
+        });
+    </script>
+
+    <script src="assets/js/script.js"></script>
+
+</body>
+</html>
